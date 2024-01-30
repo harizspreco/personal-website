@@ -1,7 +1,14 @@
-import { Inter } from 'next/font/google'
+import { Roboto_Flex } from 'next/font/google';
 import './globals.css'
+import Button from '@/components/Button'
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto_Flex = Roboto_Flex({ 
+  weight: ['400', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-flex'
+ })
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +18,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${roboto_Flex.variable} text-gray-200 shadow-sm font-sans h-screen overflow-hidden`}>
+      <div className='grid grid-cols-4 gap-x-5 m-40'>
+        <div className='grid grid-cols-subgrid gap-4 col-span-3'>
+          {children}
+        </div>
+        <aside className='flex flex-col gap-1'>
+          <Link href='/'><Button content={"Home"}/></Link>
+          <Link href='/about'><Button content={"About me"}/></Link>
+          <Link href='/projects'><Button content={"Projects"}/></Link>
+        </aside>
+      </div>
+      </body>
     </html>
   )
 }
